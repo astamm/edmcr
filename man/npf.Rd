@@ -6,7 +6,7 @@
 \usage{
 npf(
   D,
-  A = NA,
+  A = !is.na(D),
   d,
   dmax = (nrow(D) - 1),
   decreaseDim = 1,
@@ -42,7 +42,7 @@ from a partial Euclidean Distance Matrix using the methods of Fang & O'Leary (20
 }
 \details{
 This is an implementation of the Nonconvex Position Formulation (npf)
-for Euclidean Distance Matrix Completion, as proposed in 'Euclidean 
+for Euclidean Distance Matrix Completion, as proposed in 'Euclidean
 Distance Matrix Completion Problems' (Fang & O'Leary, 2012).
 
 The method seeks to minimize the following:
@@ -51,13 +51,13 @@ The method seeks to minimize the following:
 
 where the function K() is that described in gram2edm, and the norm is Frobenius. Minimization is over X, the nxp matrix of node locations.
 
-The matrix D is a partial-distance matrix, meaning some of its entries are unknown. 
+The matrix D is a partial-distance matrix, meaning some of its entries are unknown.
 It must satisfy the following conditions in order to be completed:
 \itemize{
 \item{diag(D) = 0}
 \item{If \eqn{a_{ij}} is known, \eqn{a_{ji} = a_{ij}}}
 \item{If \eqn{a_{ij}} is unknown, so is \eqn{a_{ji}}}
-\item{The graph of D must be connected. If D can be decomposed into two (or more) subgraphs, 
+\item{The graph of D must be connected. If D can be decomposed into two (or more) subgraphs,
    then the completion of D can be decomposed into two (or more) independent completion problems.}
 }
 }
@@ -69,7 +69,7 @@ D <- matrix(c(0,3,4,3,4,3,
              3,NA,5,0,1,NA,
              4,5,NA,1,0,5,
              3,NA,5,NA,5,0),byrow=TRUE, nrow=6)
-             
+
 A <- matrix(c(1,1,1,1,1,1,
              1,1,1,0,1,0,
              1,1,1,1,0,1,
